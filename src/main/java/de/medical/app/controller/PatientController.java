@@ -87,11 +87,14 @@ public class PatientController {
             Optional<User> user = userRepository.findById(id);
             if(!user.isEmpty()){
                 userService.deleteUser(user.get());
-                patientService.deleteById(user.get().getPatient().getId());
+
                 List<Appointment> appointments = appointmentRepository.findAll().stream()
                         .filter(appointment -> appointment.getPatient().getId().equals(user.get().getPatient().getId()))
                         .toList();
                 appointmentRepository.deleteAll(appointments);
+
+                patientService.deleteById(user.get().getPatient().getId());
+
 
                 return ResponseEntity.ok().build();
             }
