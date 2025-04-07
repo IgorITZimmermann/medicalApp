@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    <changeSet id="add-foreign-key" author="igor zimmermann">
+        <addColumn tableName="books">
+            <column name="publisher_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint
+                baseTableName="books"
+                baseColumnNames="publisher_id"
+                constraintName="fk_books_publisher"
+                referencedTableName="publishers"
+                referencedColumnNames="id" />
+        <rollback>
+            <dropColumn columnName="publisher_id" tableName="books" />
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,13 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    <changeSet id="renamed-column-bublisched_year-to-published_year" author="vitalii yamchytskyi">
+        <renameColumn oldColumnName="bublisched_year" newColumnName="published_year" tableName="books"/>
+        <rollback>
+            <renameColumn oldColumnName="published_year" newColumnName="bublisched_year"  tableName="books"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
