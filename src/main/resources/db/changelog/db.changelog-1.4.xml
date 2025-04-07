@@ -1,0 +1,12 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    <changeSet id="modify-column-type" author="igor zimmermann">
+        <modifyDataType tableName="person" columnName="birth_date" newDataType="TIMESTAMP"/>
+        <rollback>
+            <modifyDataType tableName="person" columnName="birth_date" newDataType="DATE"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

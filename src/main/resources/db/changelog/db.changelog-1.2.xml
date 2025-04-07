@@ -1,0 +1,21 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="init-dev-data" author="igor zimmermann" context="dev">
+        <insert tableName="person">
+            <column name="first_name" value="Dev"/>
+            <column name="last_name" value="User" />
+            <column name="birth_date" value="1985-01-01" />
+            <column name="email" value="dev@gmail.com" />
+        </insert>
+        <rollback>
+            <delete tableName="person">
+                <where>email='dev@gmail.com'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
