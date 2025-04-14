@@ -32,13 +32,16 @@ public class FileController {
     @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {
         if (file.isEmpty()) {
+            log.info("File is empty");
             model.addAttribute("message", "Вы не выбрали файл для загрузки");
             return "uploadForm";
         }
         FileEntity savedFile = fileService.saveFile(file);
         if (savedFile == null) {
+            log.info("File not saved");
             model.addAttribute("message", "Ошибка при загрузке файла !");
         } else {
+            log.info("File saved successfully");
             model.addAttribute("message","Файл успешно загружен. ID = " + savedFile.getId());
         }
         return "uploadForm";

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Загрузка файла в операционную систему</title>
+</head>
+<body>
+<h1>Загрузка файла в операционную систему</h1>
+<div>
+    <p th:text="${message}"></p>
+</div>
+<form th:action="@{/uploadOS}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <button type="submit">Отправить</button>
+</form>
+</body>
+</html>
